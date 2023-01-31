@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Container, Area, Header } from "./App.styles";
+import { TaskItem, AddItemArea } from "./components";
+import { useSelector } from "react-redux";
+import { RootState } from "./store";
 
-function App() {
+const App = () => {
+  const taskList = useSelector((state: RootState) => state.taskList);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <Area>
+        <Header>To-Do List</Header>
+        <AddItemArea />
+
+        {taskList.taskList.map((item) => (
+          <TaskItem key={item.id} taskName={item.taskName} done={item.done} />
+        ))}
+      </Area>
+    </Container>
   );
-}
+};
 
 export default App;
