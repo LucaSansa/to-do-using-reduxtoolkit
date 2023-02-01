@@ -17,15 +17,14 @@ export const AddItemArea = () => {
   const handleAddClick = (value: string) => {
     dispatch(
       increment({
-        id: taskName + String(Math.random()),
-        taskName: taskName.trim(),
+        id: value + String(Math.random()),
+        taskName: value.trim(),
         done: false,
       })
     );
     setTaskName("");
   };
 
-  console.log(taskName);
   return (
     <Container>
       <input

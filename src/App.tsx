@@ -6,6 +6,8 @@ import { RootState } from "./store";
 const App = () => {
   const taskList = useSelector((state: RootState) => state.taskList);
 
+  console.log(taskList.taskList);
+
   return (
     <Container>
       <Area>
@@ -13,7 +15,12 @@ const App = () => {
         <AddItemArea />
 
         {taskList.taskList.map((item) => (
-          <TaskItem key={item.id} taskName={item.taskName} done={item.done} />
+          <TaskItem
+            key={item.id}
+            id={item.id}
+            taskName={item.taskName}
+            done={item.done}
+          />
         ))}
       </Area>
     </Container>

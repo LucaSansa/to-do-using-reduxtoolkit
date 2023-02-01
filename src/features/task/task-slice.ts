@@ -21,8 +21,15 @@ export const taskListSlice = createSlice({
     increment: (state, action: PayloadAction<Task>) => {
       state.taskList.push(action.payload);
     },
+    changeStatus: (state, action) => {
+      const index = state.taskList.findIndex(
+        (item) => item.id === action.payload.id
+      );
+
+      state.taskList[index].done = action.payload.status;
+    },
   },
 });
 
-export const { increment } = taskListSlice.actions;
+export const { increment, changeStatus } = taskListSlice.actions;
 export const taskListReducer = taskListSlice.reducer;

@@ -1,12 +1,24 @@
 import { Container, TitleContainer, Title, InfoTextContainer } from "./styles";
+import { useDispatch } from "react-redux";
+import { changeStatus } from "../../features/task/task-slice";
 
 interface ITaskItemProps {
+  id: string;
   taskName?: string;
-  done?: boolean;
-  date?: Date;
+  done: boolean;
 }
 
-export const TaskItem = ({ taskName, done, date }: ITaskItemProps) => {
+export const TaskItem = ({ id, taskName, done }: ITaskItemProps) => {
+  const dispatch = useDispatch();
+  const handleCheckBox = (id: string, status: boolean) => {
+    dispatch(
+      changeStatus({
+        id,
+        status,
+      })
+    );
+  };
+
   return (
     <Container>
       <InfoTextContainer>
@@ -18,7 +30,7 @@ export const TaskItem = ({ taskName, done, date }: ITaskItemProps) => {
       <input
         type="checkbox"
         checked={done}
-        onChange={() => {}}
+        onChange={() => handleCheckBox(id, !done)}
         style={{ height: 25, width: 25 }}
       />
     </Container>
