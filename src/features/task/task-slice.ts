@@ -28,8 +28,14 @@ export const taskListSlice = createSlice({
 
       state.taskList[index].done = action.payload.status;
     },
+    deleteTask: (state, action) => {
+      state.taskList.splice(
+        state.taskList.findIndex((item) => item.id === action.payload.id),
+        1
+      );
+    },
   },
 });
 
-export const { increment, changeStatus } = taskListSlice.actions;
+export const { increment, changeStatus, deleteTask } = taskListSlice.actions;
 export const taskListReducer = taskListSlice.reducer;

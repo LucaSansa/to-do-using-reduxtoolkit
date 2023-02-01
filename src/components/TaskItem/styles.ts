@@ -32,3 +32,8 @@ export const Title = styled.h2`
   margin: 0;
   padding: 0;
 `;
+
+export const ButtonsContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
